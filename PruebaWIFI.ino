@@ -35,8 +35,8 @@ void loop(){
 /*#include "UbidotsMicroESP8266.h"
 
 #define TOKEN "BBFF-8ypuSdAqQo6I4QPIqWYBpAfjQOMtGz"
-#define WIFISSID "F.Sanchez 2.4"
-#define PASSWORD "LlliIIo0\\,AZx017"
+#define WIFISSID ""
+#define PASSWORD ""
 
 Ubidots client(TOKEN);
 
