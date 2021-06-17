@@ -56,4 +56,4 @@ module UARTrx(rx, clkBaud, dato, hecho);
 		endcase
 	end
 	
-endmodule 
+endmodule

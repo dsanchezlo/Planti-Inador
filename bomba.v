@@ -7,4 +7,4 @@ module bomba(listo, humedad, activarB);
 	//Si la humedad es menor o igual a 19%
 	assign activarB = (humedad[7:4] <= 'd1)? 1 : 0;
 
-endmodule 
+endmodule
