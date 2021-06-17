@@ -1,4 +1,4 @@
-module alarma(regar, clk, melody);		// Negro -J Balvin
+module alarmaN(regar, clk, melody);		// Negro -J Balvin
 	input wire clk;
 	input wire regar;
 	output reg melody;
