@@ -1,4 +1,4 @@
-module alarmaTOM(regar, clk, melody);	// Take On Me - A-ha
+module alarmaTOM(regar, clk, melody);	// Take On Me - a-ha
 	input wire clk;
 	input wire regar;
 	output reg melody;
