@@ -33,9 +33,9 @@ module Principal(clk, rx, MODbomba, MODgrifo, MODluz, activarB, melody, leds, Ss
 	decodificador decoder(hecho, dato, humedad, hora, tipoPlanta, listo);
 	
 	activar (humedad, regar);
-	alarmaN negro(regar, clk, melody);
+	//alarmaN negro(regar, clk, melody);
 	//alarmaTOM TakeOnMe(regar, clk, melody);
-	//alarmaSCOM(regar, clk, melody);
+	alarmaSCOM(regar, clk, melody);
 	
 	//bomba bomb(listo, humedad, activarB);
 	
