@@ -1,4 +1,4 @@
-//Reloj para 50000 Baudios
+//Reloj para 115200 Baudios
 //clk50M / (2*clkBaud) = #pulsosclk50M
 
 module BaudFreq(clk, clkBaud);
@@ -13,7 +13,7 @@ module BaudFreq(clk, clkBaud);
 	end
 
 	always @(posedge clk)begin
-		if(count < 'd500)begin
+		if(count < 'd217)begin
 			count <= count + 'd1;
 		end else begin
 			clkBaud <= !clkBaud;

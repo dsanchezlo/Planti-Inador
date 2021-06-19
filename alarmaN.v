@@ -309,7 +309,7 @@ module alarmaN(regar, clk, melody);		// Negro -J Balvin
 			tiempo <= tiempo + 'b1;
 
 			
-			if(tiempo > 2_660_000_000) tiempo <= 'b0;		// Reinicio de la canción después de 1 min
+			if(tiempo > 2_660_000_000) tiempo <= 'b0;		// Reinicio de la canción después de 30 seg
 		
 		end else begin
 			tiempo = 'b0;

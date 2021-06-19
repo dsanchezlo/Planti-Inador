@@ -37,7 +37,7 @@ module UARTrx(rx, clkBaud, dato, hecho);
 	always @(posedge clkBaud)begin
 		case(estado)
 			ESPERAR: begin
-							if (!rx)begin	//Se activa con el bit el primer bir de la señal (Cero)
+							if (!rx)begin	//Se activa con el primer bit de la señal (Cero)
 								hecho <= 'd0;
 								bitActual <= 'd0;
 								estado <= RECIBIR;

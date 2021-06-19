@@ -498,7 +498,7 @@ module alarmaSCOM(regar, clk, melody);	// Sweet Child O' Mine - Guns N' Roses
 			tiempo <= tiempo + 'b1;
 
 			
-			if(tiempo > 2_270_000_000) tiempo <= 'b0;	// Reinicio de la canción después de 1 min
+			if(tiempo > 2_270_000_000) tiempo <= 'b0;	// Reinicio de la canción después de 30 seg
 		
 		
 		end else begin

@@ -1,4 +1,4 @@
-module Principal(clk, rx, MODbomba, MODgrifo, MODluz, activarB, melody, leds, Sseg, anodos);
+module Principal(clk, rx, MODbomba, MODgrifo, MODluz, activarB, melody, Sseg, anodos);
 	input wire clk;
 	input wire rx;
 	
@@ -10,7 +10,6 @@ module Principal(clk, rx, MODbomba, MODgrifo, MODluz, activarB, melody, leds, Ss
 	//Para activar bomba de agua
 	output wire activarB;
 	output wire melody;
-	output wire [11:0]leds;
 	output wire [0:6]Sseg;
 	output wire [7:0]anodos;
 	
@@ -40,31 +39,7 @@ module Principal(clk, rx, MODbomba, MODgrifo, MODluz, activarB, melody, leds, Ss
 	//bomba bomb(listo, humedad, activarB);
 	
 	divfreq(clk, clk1kHz);
-	displays(clk1kHz, humedad, Sseg, anodos);
-	
-	/*
-	input clk;
-	output salida;
-	
-	
-	reg [30:0]count;
-
-	initial begin
-		count = 'd0;
-	end
-
-	always @(posedge clk)begin
-		if(count < 'd200_000_000)begin
-			count <= count + 'd1;
-		end else begin
-			salida <= !salida;
-			count <= 'd0;
-		end
-	end*/
-	
-	assign leds[3:0] = (listo) ? ~humedad[3:0] : 4'b1111;
-	assign leds[7:4] = (listo) ? ~humedad[7:4] : 4'b1111;
-	assign leds[11:8] = (listo) ? ~humedad[11:8] : 4'b1111;
+	displays(clk1kHz, humedad, hora, tipoPlanta, Sseg, anodos);
 
 	
 endmodule

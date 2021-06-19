@@ -240,7 +240,7 @@ module alarmaTOM(regar, clk, melody);	// Take On Me - a-ha
 				tiempo <= 'b0;	// Reinicio de la canción
 				repetir <= repetir + 'b1;
 			end else if(tiempo > 1_842_000_000)begin
-				tiempo <= 'b0;	// Reinicio de la canción después de 1 min
+				tiempo <= 'b0;	// Reinicio de la canción después de 30 seg
 				repetir <= 'b0;
 			end
 		end else begin
