@@ -12,7 +12,6 @@ module UARTrx(rx, clkBaud, dato, hecho);
 	//Estados necesarios para recibir los datos
 	parameter ESPERAR = 2'b00;
 	parameter RECIBIR = 2'b01;
-	parameter TERMINAR = 2'b10;
 	
 	reg [1:0]estado;
 	reg recibido;			//Referencia al estado RECIBIR
