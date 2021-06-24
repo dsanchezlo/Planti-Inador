@@ -31,15 +31,13 @@ module Principal(clk, rx, MODbomba, MODgrifo, MODluz, activarB, melody, Sseg, an
 	UARTrx serialRX(rx, clkBaud, dato, hecho);
 	decodificador decoder(hecho, dato, humedad, hora, tipoPlanta, listo);
 	
-	activar (humedad, regar);
-	//alarmaN negro(regar, clk, melody);
+	activar activ(humedad, regar);
+	//alarmaN Negro(regar, clk, melody);
 	//alarmaTOM TakeOnMe(regar, clk, melody);
-	alarmaSCOM(regar, clk, melody);
-	
-	//bomba bomb(listo, humedad, activarB);
-	
-	divfreq(clk, clk1kHz);
-	displays(clk1kHz, humedad, hora, tipoPlanta, Sseg, anodos);
+	alarmaSCOM SweetChildOMine(regar, clk, melody);
+		
+	divfreq divf(clk, clk1kHz);
+	displays disp(clk1kHz, humedad, hora, tipoPlanta, Sseg, anodos);
 
 	
 endmodule
