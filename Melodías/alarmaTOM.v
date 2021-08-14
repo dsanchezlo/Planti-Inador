@@ -1,7 +1,10 @@
-module alarmaTOM(regar, clk, melody);	// Take On Me - a-ha
+module alarmaTOM(clk, regar, MODbomba, lowLevel, highLevel, melodyTOM);				// Take On Me - a-ha
 	input wire clk;
-	input wire regar;
-	output reg melody;
+	input wire regar;				// Indica si se debe regar la planta
+	input wire MODbomba;			// Indica si el módulo de la bomba está conectado
+	input wire lowLevel;			// Nivel de agua del tanque alto (5 %)
+	input wire highLevel;		// Nivel de agua del tanque alto (90 %)
+	output reg melodyTOM;		// Canción a reproducir en el parlante
 	
 	reg [19:0] re;
 	reg [19:0] mi;
@@ -9,249 +12,249 @@ module alarmaTOM(regar, clk, melody);	// Take On Me - a-ha
 	reg [19:0] sol;
 	reg [19:0] la;
 	reg [19:0] si;
-	reg [63:0]tiempo;
-	reg repetir;		// Para repetir la melodía 2 veces
+	reg [63:0] tiempo;
+	reg repetir;					// Para repetir la melodía 2 veces
 
 	initial begin
-		tiempo = 'b0;
-		re = 'b0;
-		mi = 'b0;
-		fa = 'b0;
-		sol = 'b0;
-		la = 'b0;
-		si = 'b0;
-		repetir = 'b0;
+		tiempo = 64'b0;
+		re = 20'b0;
+		mi = 20'b0;
+		fa = 20'b0;
+		sol = 20'b0;
+		la = 20'b0;
+		si = 20'b0;
+		repetir = 1'b0;
 	end
 
-	always @(posedge clk)begin
+	always @(posedge clk) begin
 		
 		
-		if(regar)begin
+		if(regar && !MODbomba || (!highLevel && !lowLevel && MODbomba)) begin
 		
-			if(tiempo <= 10_000_000)begin
-				if(fa < 'd33_784)begin
-					fa <= fa + 'd1;
+			if(tiempo <= 64'd10_000_000) begin
+				if(fa < 20'd33_784) begin
+					fa <= fa + 20'd1;
 				end else begin
-					melody <= !melody;
-					fa <= 'd0;
+					melodyTOM <= !melodyTOM;
+					fa <= 20'd0;
 				end
-			end else if(tiempo <= 11_000_000)begin
-					melody <= 0;
-			end else if(tiempo <= 21_000_000)begin
-				if(fa < 'd33_784)begin
-					fa <= fa + 'd1;
+			end else if(tiempo <= 64'd11_000_000) begin
+					melodyTOM <= 1'd0;
+			end else if(tiempo <= 64'd21_000_000) begin
+				if(fa < 20'd33_784) begin
+					fa <= fa + 20'd1;
 				end else begin
-					melody <= !melody;
-					fa <= 'd0;
+					melodyTOM <= !melodyTOM;
+					fa <= 20'd0;
 				end
-			end else if(tiempo <= 22_000_000)begin
-					melody <= 0;
-			end else if(tiempo <= 32_000_000)begin
-				if(re < 'd42_566)begin
-					re <= re + 'd1;
+			end else if(tiempo <= 64'd22_000_000) begin
+					melodyTOM <= 1'd0;
+			end else if(tiempo <= 64'd32_000_000) begin
+				if(re < 20'd42_566) begin
+					re <= re + 20'd1;
 				end else begin
-					melody <= !melody;
-					re <= 'd0;
+					melodyTOM <= !melodyTOM;
+					re <= 20'd0;
 				end
-			end else if(tiempo <= 52_000_000)begin
-				if(si < 'd50_619)begin
-					si <= si + 'd1;
+			end else if(tiempo <= 64'd52_000_000) begin
+				if(si < 20'd50_619) begin
+					si <= si + 20'd1;
 				end else begin
-					melody <= !melody;
-					si <= 'd0;
+					melodyTOM <= !melodyTOM;
+					si <= 20'd0;
 				end
-			end else if(tiempo <= 54_000_000)begin
-					melody <= 0;
-			end else if(tiempo <= 74_000_000)begin
-				if(si < 'd50_619)begin
-					si <= si + 'd1;
+			end else if(tiempo <= 64'd54_000_000) begin
+					melodyTOM <= 1'd0;
+			end else if(tiempo <= 64'd74_000_000) begin
+				if(si < 20'd50_619) begin
+					si <= si + 20'd1;
 				end else begin
-					melody <= !melody;
-					si <= 'd0;
+					melodyTOM <= !melodyTOM;
+					si <= 20'd0;
 				end
-			end else if(tiempo <= 76_000_000)begin
-					melody <= 0;
-			end else if(tiempo <= 96_000_000)begin
-				if(mi < 'd37_923)begin
-					mi <= mi + 'd1;
+			end else if(tiempo <= 64'd76_000_000) begin
+					melodyTOM <= 1'd0;
+			end else if(tiempo <= 64'd96_000_000) begin
+				if(mi < 20'd37_923) begin
+					mi <= mi + 20'd1;
 				end else begin
-					melody <= !melody;
-					mi <= 'd0;
+					melodyTOM <= !melodyTOM;
+					mi <= 20'd0;
 				end
-			end else if(tiempo <= 98_000_000)begin
-					melody <= 0;
-			end else if(tiempo <= 118_000_000)begin
-				if(mi < 'd37_923)begin
-					mi <= mi + 'd1;
+			end else if(tiempo <= 64'd98_000_000) begin
+					melodyTOM <= 1'd0;
+			end else if(tiempo <= 64'd118_000_000) begin
+				if(mi < 20'd37_923) begin
+					mi <= mi + 20'd1;
 				end else begin
-					melody <= !melody;
-					mi <= 'd0;
-				end
-			end
-			
-			else if(tiempo <= 120_000_000)begin
-					melody <= 0;
-			end
-			
-			else if(tiempo <= 130_000_000)begin
-				if(mi < 'd37_923)begin
-					mi <= mi + 'd1;
-				end else begin
-					melody <= !melody;
-					mi <= 'd0;
-				end
-			end else if(tiempo <= 140_000_000)begin
-				if(sol < 'd30_098)begin
-					sol <= sol + 'd1;
-				end else begin
-					melody <= !melody;
-					sol <= 'd0;
-				end
-			end else if(tiempo <= 141_000_000)begin
-					melody <= 0;
-			end else if(tiempo <= 151_000_000)begin
-				if(sol < 'd30_098)begin
-					sol <= sol + 'd1;
-				end else begin
-					melody <= !melody;
-					sol <= 'd0;
-				end
-			end else if(tiempo <= 161_000_000)begin
-				if(la < 'd28_409)begin
-					la <= la + 'd1;
-				end else begin
-					melody <= !melody;
-					la <= 'd0;
-				end
-			end else if(tiempo <= 171_000_000)begin
-				if(si < 'd25_309)begin
-					si <= si + 'd1;
-				end else begin
-					melody <= !melody;
-					si <= 'd0;
-				end
-			end else if(tiempo <= 181_000_000)begin
-				if(la < 'd28_409)begin
-					la <= la + 'd1;
-				end else begin
-					melody <= !melody;
-					la <= 'd0;
-				end
-			end else if(tiempo <= 182_000_000)begin
-					melody <= 0;
-			end else if(tiempo <= 192_000_000)begin
-				if(la < 'd28_409)begin
-					la <= la + 'd1;
-				end else begin
-					melody <= !melody;
-					la <= 'd0;
-				end
-			end else if(tiempo <= 193_000_000)begin
-					melody <= 0;
-			end else if(tiempo <= 203_000_000)begin
-				if(la < 'd28_409)begin
-					la <= la + 'd1;
-				end else begin
-					melody <= !melody;
-					la <= 'd0;
-				end
-			end else if(tiempo <= 219_000_000)begin
-				if(mi < 'd37_923)begin
-					mi <= mi + 'd1;
-				end else begin
-					melody <= !melody;
-					mi <= 'd0;
-				end
-			end else if(tiempo <= 224_000_000)begin
-					melody <= 0;
-			end else if(tiempo <= 244_000_000)begin
-				if(re < 'd42_566)begin
-					re <= re + 'd1;
-				end else begin
-					melody <= !melody;
-					re <= 'd0;
-				end
-			end else if(tiempo <= 247_000_000)begin
-					melody <= 0;
-			end else if(tiempo <= 263_000_000)begin
-				if(fa < 'd33_784)begin
-					fa <= fa + 'd1;
-				end else begin
-					melody <= !melody;
-					fa <= 'd0;
-				end
-			end else if(tiempo <= 268_000_000)begin
-					melody <= 0;
-			end else if(tiempo <= 284_000_000)begin
-				if(fa < 'd33_784)begin
-					fa <= fa + 'd1;
-				end else begin
-					melody <= !melody;
-					fa <= 'd0;
+					melodyTOM <= !melodyTOM;
+					mi <= 20'd0;
 				end
 			end
 			
-			else if(tiempo <= 289_000_000)begin
-					melody <= 0;
+			else if(tiempo <= 64'd120_000_000) begin
+					melodyTOM <= 1'd0;
 			end
 			
-			else if(tiempo <= 299_000_000)begin
-				if(fa < 'd33_784)begin
-					fa <= fa + 'd1;
+			else if(tiempo <= 64'd130_000_000) begin
+				if(mi < 20'd37_923) begin
+					mi <= mi + 20'd1;
 				end else begin
-					melody <= !melody;
-					fa <= 'd0;
+					melodyTOM <= !melodyTOM;
+					mi <= 20'd0;
 				end
-			end else if(tiempo <= 309_000_000)begin
-				if(mi < 'd37_923)begin
-					mi <= mi + 'd1;
+			end else if(tiempo <= 64'd140_000_000) begin
+				if(sol < 20'd30_098) begin
+					sol <= sol + 20'd1;
 				end else begin
-					melody <= !melody;
-					mi <= 'd0;
+					melodyTOM <= !melodyTOM;
+					sol <= 20'd0;
 				end
-			end else if(tiempo <= 310_000_000)begin
-					melody <= 0;
-			end else if(tiempo <= 320_000_000)begin
-				if(mi < 'd37_923)begin
-					mi <= mi + 'd1;
+			end else if(tiempo <= 64'd141_000_000) begin
+					melodyTOM <= 1'd0;
+			end else if(tiempo <= 64'd151_000_000) begin
+				if(sol < 20'd30_098) begin
+					sol <= sol + 20'd1;
 				end else begin
-					melody <= !melody;
-					mi <= 'd0;
+					melodyTOM <= !melodyTOM;
+					sol <= 20'd0;
 				end
-			end else if(tiempo <= 330_000_000)begin
-				if(fa < 'd33_784)begin
-					fa <= fa + 'd1;
+			end else if(tiempo <= 64'd161_000_000) begin
+				if(la < 20'd28_409) begin
+					la <= la + 20'd1;
 				end else begin
-					melody <= !melody;
-					fa <= 'd0;
+					melodyTOM <= !melodyTOM;
+					la <= 20'd0;
 				end
-			end else if(tiempo <= 340_000_000)begin
-				if(mi < 'd37_923)begin
-					mi <= mi + 'd1;
+			end else if(tiempo <= 64'd171_000_000) begin
+				if(si < 20'd25_309) begin
+					si <= si + 20'd1;
 				end else begin
-					melody <= !melody;
-					mi <= 'd0;
+					melodyTOM <= !melodyTOM;
+					si <= 20'd0;
+				end
+			end else if(tiempo <= 64'd181_000_000) begin
+				if(la < 20'd28_409) begin
+					la <= la + 20'd1;
+				end else begin
+					melodyTOM <= !melodyTOM;
+					la <= 20'd0;
+				end
+			end else if(tiempo <= 64'd182_000_000) begin
+					melodyTOM <= 1'd0;
+			end else if(tiempo <= 64'd192_000_000) begin
+				if(la < 20'd28_409) begin
+					la <= la + 20'd1;
+				end else begin
+					melodyTOM <= !melodyTOM;
+					la <= 20'd0;
+				end
+			end else if(tiempo <= 64'd193_000_000) begin
+					melodyTOM <= 1'd0;
+			end else if(tiempo <= 64'd203_000_000) begin
+				if(la < 20'd28_409) begin
+					la <= la + 20'd1;
+				end else begin
+					melodyTOM <= !melodyTOM;
+					la <= 20'd0;
+				end
+			end else if(tiempo <= 64'd219_000_000) begin
+				if(mi < 20'd37_923) begin
+					mi <= mi + 20'd1;
+				end else begin
+					melodyTOM <= !melodyTOM;
+					mi <= 20'd0;
+				end
+			end else if(tiempo <= 64'd224_000_000) begin
+					melodyTOM <= 1'd0;
+			end else if(tiempo <= 64'd244_000_000) begin
+				if(re < 20'd42_566) begin
+					re <= re + 20'd1;
+				end else begin
+					melodyTOM <= !melodyTOM;
+					re <= 20'd0;
+				end
+			end else if(tiempo <= 64'd247_000_000) begin
+					melodyTOM <= 1'd0;
+			end else if(tiempo <= 64'd263_000_000) begin
+				if(fa < 20'd33_784) begin
+					fa <= fa + 20'd1;
+				end else begin
+					melodyTOM <= !melodyTOM;
+					fa <= 20'd0;
+				end
+			end else if(tiempo <= 64'd268_000_000) begin
+					melodyTOM <= 1'd0;
+			end else if(tiempo <= 64'd284_000_000) begin
+				if(fa < 20'd33_784) begin
+					fa <= fa + 20'd1;
+				end else begin
+					melodyTOM <= !melodyTOM;
+					fa <= 20'd0;
 				end
 			end
 			
-			tiempo <= tiempo + 'b1;
+			else if(tiempo <= 64'd289_000_000) begin
+					melodyTOM <= 1'd0;
+			end
+			
+			else if(tiempo <= 64'd299_000_000) begin
+				if(fa < 20'd33_784) begin
+					fa <= fa + 20'd1;
+				end else begin
+					melodyTOM <= !melodyTOM;
+					fa <= 20'd0;
+				end
+			end else if(tiempo <= 64'd309_000_000) begin
+				if(mi < 20'd37_923) begin
+					mi <= mi + 20'd1;
+				end else begin
+					melodyTOM <= !melodyTOM;
+					mi <= 20'd0;
+				end
+			end else if(tiempo <= 64'd310_000_000) begin
+					melodyTOM <= 1'd0;
+			end else if(tiempo <= 64'd320_000_000) begin
+				if(mi < 20'd37_923) begin
+					mi <= mi + 20'd1;
+				end else begin
+					melodyTOM <= !melodyTOM;
+					mi <= 20'd0;
+				end
+			end else if(tiempo <= 64'd330_000_000) begin
+				if(fa < 20'd33_784) begin
+					fa <= fa + 20'd1;
+				end else begin
+					melodyTOM <= !melodyTOM;
+					fa <= 20'd0;
+				end
+			end else if(tiempo <= 64'd340_000_000) begin
+				if(mi < 20'd37_923) begin
+					mi <= mi + 20'd1;
+				end else begin
+					melodyTOM <= !melodyTOM;
+					mi <= 20'd0;
+				end
+			end
+			
+			tiempo <= tiempo + 64'd1;
 
-			if(tiempo > 342_000_000 && repetir == 'b0)begin
-				tiempo <= 'b0;	// Reinicio de la canción
-				repetir <= repetir + 'b1;
-			end else if(tiempo > 1_842_000_000)begin
-				tiempo <= 'b0;	// Reinicio de la canción después de 30 seg
-				repetir <= 'b0;
+			if(tiempo > 64'd342_000_000 && repetir == 1'b0) begin
+				tiempo <= 64'd0;												// Reinicio de la canción
+				repetir <= repetir + 1'b1;
+			end else if(tiempo > 64'd1_842_000_000) begin
+				tiempo <= 64'd0;												// Reinicio de la canción después de 30 seg
+				repetir <= 1'b0;
 			end
 		end else begin
-			tiempo = 'b0;
-			re = 'b0;
-			mi = 'b0;
-			fa = 'b0;
-			sol = 'b0;
-			la = 'b0;
-			si = 'b0;
-			repetir = 'b0;
+			tiempo <= 64'b0;
+			re <= 20'b0;
+			mi <= 20'b0;
+			fa <= 20'b0;
+			sol <= 20'b0;
+			la <= 20'b0;
+			si <= 20'b0;
+			repetir <= 1'b0;
 		end
 		
 		
