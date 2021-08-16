@@ -1,10 +1,10 @@
-module alarmaN(clk, regar, MODbomba, lowLevel, highLevel, melodyN);					// Negro - J Balvin
+module alarmaN(clk, regar, MODbomba, lowLevel, highLevel, melodyN);		// Negro - J Balvin
 	input wire clk;
-	input wire regar;				// Indica si se debe regar la planta
-	input wire MODbomba;			// Indica si el módulo de la bomba está conectado
-	input wire lowLevel;			// Nivel de agua del tanque alto (5 %)
+	input wire regar;		// Indica si se debe regar la planta
+	input wire MODbomba;		// Indica si el módulo de la bomba está conectado
+	input wire lowLevel;		// Nivel de agua del tanque alto (5 %)
 	input wire highLevel;		// Nivel de agua del tanque alto (90 %)
-	output reg melodyN;			// Canción a reproducir en el parlante
+	output reg melodyN;		// Canción a reproducir en el parlante
 	
 	reg [19:0] do;
 	reg [19:0] re;
