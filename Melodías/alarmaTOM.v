@@ -1,8 +1,8 @@
 module alarmaTOM(clk, regar, MODbomba, lowLevel, highLevel, melodyTOM);				// Take On Me - a-ha
 	input wire clk;
-	input wire regar;				// Indica si se debe regar la planta
-	input wire MODbomba;			// Indica si el módulo de la bomba está conectado
-	input wire lowLevel;			// Nivel de agua del tanque alto (5 %)
+	input wire regar;		// Indica si se debe regar la planta
+	input wire MODbomba;		// Indica si el módulo de la bomba está conectado
+	input wire lowLevel;		// Nivel de agua del tanque alto (5 %)
 	input wire highLevel;		// Nivel de agua del tanque alto (90 %)
 	output reg melodyTOM;		// Canción a reproducir en el parlante
 	
@@ -13,7 +13,7 @@ module alarmaTOM(clk, regar, MODbomba, lowLevel, highLevel, melodyTOM);				// Ta
 	reg [19:0] la;
 	reg [19:0] si;
 	reg [63:0] tiempo;
-	reg repetir;					// Para repetir la melodía 2 veces
+	reg repetir;			// Para repetir la melodía 2 veces
 
 	initial begin
 		tiempo = 64'b0;
@@ -240,10 +240,10 @@ module alarmaTOM(clk, regar, MODbomba, lowLevel, highLevel, melodyTOM);				// Ta
 			tiempo <= tiempo + 64'd1;
 
 			if(tiempo > 64'd342_000_000 && repetir == 1'b0) begin
-				tiempo <= 64'd0;												// Reinicio de la canción
+				tiempo <= 64'd0;						// Reinicio de la canción
 				repetir <= repetir + 1'b1;
 			end else if(tiempo > 64'd1_842_000_000) begin
-				tiempo <= 64'd0;												// Reinicio de la canción después de 30 seg
+				tiempo <= 64'd0;						// Reinicio de la canción después de 30 seg
 				repetir <= 1'b0;
 			end
 		end else begin
@@ -256,7 +256,6 @@ module alarmaTOM(clk, regar, MODbomba, lowLevel, highLevel, melodyTOM);				// Ta
 			si <= 20'b0;
 			repetir <= 1'b0;
 		end
-		
 		
 	end
 	
