@@ -1,17 +1,17 @@
 module decodificador(hecho, dato, ERRrx, humedad, melodia1, melodia2, maceta, tipoPlanta, hora, minutos, luxes);
-	input wire hecho;								// Indica si rx ya leyó el valor de "dato"
-	input wire [7:0] dato; 						// Caracter recibido por rx (Dí­gito)
-	input wire ERRrx;								// Indica si hay algún fallo en el dato leído (Paridad)
-	output reg [11:0] humedad;					// (3 Dí­gitos c-d-u)
-	output reg [3:0] melodia1; 				// (3 melodí­as para escoger la alarma que indica que se debe regar la planta)
-	output reg [3:0] melodia2; 				// (3 melodí­as para escoger la alarma que indica que se debe llenar el tanque)
-	output reg [3:0] maceta; 					// Tamaño Maceta
+	input wire hecho;					// Indica si rx ya leyó el valor de "dato"
+	input wire [7:0] dato; 					// Caracter recibido por rx (Dígito)
+	input wire ERRrx;					// Indica si hay algún fallo en el dato leído (Paridad)
+	output reg [11:0] humedad;				// (3 Dígitos c-d-u)
+	output reg [3:0] melodia1; 				// (3 melodías para escoger la alarma que indica que se debe regar la planta)
+	output reg [3:0] melodia2; 				// (3 melodías para escoger la alarma que indica que se debe llenar el tanque)
+	output reg [3:0] maceta; 				// Tamaño Maceta
 	output reg [3:0] tipoPlanta;				// Selección entre Suculenta, Laurel, y Papa
-	output reg [7:0] hora;					   // Hora del dí­a (0 a 23)
-	output reg [7:0] minutos;	 			   // Minutos (de 0 a 59)
-	output reg [19:0] luxes;				   // 1 - 65535 lux
+	output reg [7:0] hora;					// Hora del día (0 a 23)
+	output reg [7:0] minutos;	 			// Minutos (de 0 a 59)
+	output reg [19:0] luxes;				// 1 - 65535 lux
 	
-	reg [3:0] posicionNum; 						// Debe llegar a 7 (Dí­gitos)
+	reg [3:0] posicionNum; 					// Debe llegar a 7 (Dígitos)
 	
 	initial begin
 		posicionNum = 4'b0;
