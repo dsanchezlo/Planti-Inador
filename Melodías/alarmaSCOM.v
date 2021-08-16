@@ -1,8 +1,8 @@
-module alarmaSCOM(clk, regar, MODbomba, lowLevel, highLevel, melodySCOM);			// Sweet Child O' Mine - Guns N' Roses
+module alarmaSCOM(clk, regar, MODbomba, lowLevel, highLevel, melodySCOM);		// Sweet Child O' Mine - Guns N' Roses
 	input wire clk;
-	input wire regar;				// Indica si se debe regar la planta
-	input wire MODbomba;			// Indica si el módulo de la bomba está conectado
-	input wire lowLevel;			// Nivel de agua del tanque alto (5 %)
+	input wire regar;		// Indica si se debe regar la planta
+	input wire MODbomba;		// Indica si el módulo de la bomba está conectado
+	input wire lowLevel;		// Nivel de agua del tanque alto (5 %)
 	input wire highLevel;		// Nivel de agua del tanque alto (90 %)
 	output reg melodySCOM;		// Canción a reproducir en el parlante
 	
@@ -501,7 +501,7 @@ module alarmaSCOM(clk, regar, MODbomba, lowLevel, highLevel, melodySCOM);			// S
 			tiempo <= tiempo + 64'd1;
 
 			
-			if(tiempo > 64'd2_270_000_000) tiempo <= 64'd0;			  // Reinicio de la canción después de 30 seg
+			if(tiempo > 64'd2_270_000_000) tiempo <= 64'd0;			 // Reinicio de la canción después de 30 seg
 		
 		
 		end else begin
