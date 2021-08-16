@@ -62,9 +62,9 @@ module codificador(clkBaud, clk1Hz, MODluz, MODbomba, MODelectrov, highLevel, lo
 					4'b0111: datotx <= (prenderB) ? 8'b10110001 : 8'b00110000;
 					4'b1000: datotx <= (activarEV) ? 8'b10110001 : 8'b00110000; 
 					4'b1001: begin 
-								datotx <= (regar) ? 8'b10110001 : 8'b00110000;
-								finPaquete <= 1'b1;
-							  end
+							datotx <= (regar) ? 8'b10110001 : 8'b00110000;
+							finPaquete <= 1'b1;
+						 end
 					default: ;
 				endcase 
 				posPaquete <= (posPaquete < 4'd9) ? posPaquete + 4'd1 : 4'd0;
