@@ -6,9 +6,9 @@
 BH1750 lightMeter;                    // Sensor de Luz BH1750FVI
 Rtc_Pcf8563 rtc;                      // Reloj RTC I2C PCF8563
 
-const char* UBIDOTS_TOKEN = "BBFF-ftnTwHaymzfWa02h0Ev5TjGeZVTVCm";  // TOKEN de Ubidots
-const char* WIFI_SSID = "Delta 2.4";                                // Red WiFi
-const char* WIFI_PASS = "Careli7@%2020";                            // Contraseña de la red 
+const char* UBIDOTS_TOKEN = "...";    // TOKEN de Ubidots
+const char* WIFI_SSID = "...";        // Red WiFi
+const char* WIFI_PASS = "...";        // Contraseña de la red 
 
 int lux1;
 int lux2;
@@ -50,7 +50,7 @@ void setup() {
   rtc.setDate(26, 1, 7, 0, 21);       // Configurar día, día de la semana, mes, siglo (1 = 1900, 0 = 2000), año (0 - 99)
   rtc.setTime(15, 30, 0);             // Configurar hora, minuto, segundo
 
-  ubidots.wifiConnect(WIFI_SSID, WIFI_PASS);                        // Establece la conexión con la red WiFi
+  ubidots.wifiConnect(WIFI_SSID, WIFI_PASS);      // Establece la conexión con la red WiFi
 
   lux1 = 0;
   lux2 = 0;
@@ -125,6 +125,7 @@ void loop() {
     Serial.print(lux);
   } else Serial.print(lux);
 
+  
 //////////////////////////////////////////////////////////////////////////
 // Recibir datos de la FPGA
 
