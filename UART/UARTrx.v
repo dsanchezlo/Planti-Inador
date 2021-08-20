@@ -7,7 +7,7 @@ module UARTrx(rx, clkBaud, dato, hecho, ERRrx);
 	input wire rx;										// Datos comunicacón serial
 	input wire clkBaud;									// Reloj para 115200 Baudios
 	output reg [7:0] dato;									// Dato leído
-	output reg hecho;									// Indica si ya se leyó el valor correcto
+	output reg hecho;									// Indica si ya se leyó el dato recibido
 	output reg ERRrx;									// Indica si hay algún fallo en el dato leído (Paridad)
 	
 	// Estados necesarios para recibir los datos
