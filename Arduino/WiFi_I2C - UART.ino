@@ -32,6 +32,7 @@ byte activarB;
 byte prenderB;
 byte activarEV;
 byte regar;
+int luzON;
 
 Ubidots ubidots(UBIDOTS_TOKEN, UBI_HTTP);
 
@@ -40,7 +41,8 @@ void setup() {
   Serial.begin(115200, SERIAL_7E2);
   Wire.begin(D4,D3);                  // SCL y SCA
   pinMode(A0,INPUT);                  // Pin que recibe el valor de humedad
-
+  pinMode(D5,INPUT);                  // Pin que indica si el modúlo de luz está conectado
+  
   // Sensor de Luz BH1750FVI
   lightMeter.begin();                 // Inicia el sensor
   Serial.println(F("BH1750 Test"));   // Establece la configuración en la que estará operando el sensor
@@ -49,7 +51,7 @@ void setup() {
   rtc.initClock();                    // Inicia el reloj
   rtc.setDate(26, 1, 7, 0, 21);       // Configurar día, día de la semana, mes, siglo (1 = 1900, 0 = 2000), año (0 - 99)
   rtc.setTime(15, 30, 0);             // Configurar hora, minuto, segundo
-
+  
   ubidots.wifiConnect(WIFI_SSID, WIFI_PASS);      // Establece la conexión con la red WiFi
 
   lux1 = 0;
@@ -60,18 +62,25 @@ void setup() {
   cancionLT = 1;
   maceta = 1;
   Tplanta = 1;
-  
+  luzON = 0;
+  tiempo = '0';
+  minuto = 0;
+  hora = 0;
 }
 
 void loop() {
 
 // Enviar datos a la FPGA
-
+  
+  luzON = digitalRead(D5);
+  
+  if(luzON == 1){
   // Para promediar dos valores de luz recibidos por el sensor de luz BH1750FVI
   lux1 = lightMeter.readLightLevel();
   delay(500);
   lux2 = lightMeter.readLightLevel();
-
+  } else delay(500);
+  
   // Se reciben datos de Ubidots
   cancionRP = ubidots.get("esp8266", "cancionrp");
   cancionLT = ubidots.get("esp8266", "cancionlt");
@@ -96,6 +105,7 @@ void loop() {
   Serial.print(maceta);
   Serial.print(Tplanta);
 
+  if(luzON == 1){
   // Reloj RTC I2C PCF8563
   tiempo = rtc.formatTime();
   hora = rtc.getHour();
@@ -124,7 +134,7 @@ void loop() {
     Serial.print("0");
     Serial.print(lux);
   } else Serial.print(lux);
-
+  } else Serial.print("000000000");
   
 //////////////////////////////////////////////////////////////////////////
 // Recibir datos de la FPGA
