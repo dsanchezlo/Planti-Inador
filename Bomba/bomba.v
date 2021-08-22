@@ -35,6 +35,7 @@ module bomba(regar, maceta, MODbomba, clk, activarB);
 					temporizador <= temporizador + 64'd1;
 				end else begin
 					activarR <= 1'd0;
+					activarB <= 1'd0;
 					temporizador <= 64'd0;
 				end
 			end
