@@ -24,14 +24,14 @@ module bomba(regar, maceta, MODbomba, clk, activarB);
 		activarB = 1'd0;
 	end
 
-	always @(posedge clk) begin					// 50_000_000/(2*(1/(30*tiempoRegado)))
+	always @(posedge clk) begin					// 50_000_000*30*tiempoRegado
 		if(MODbomba) begin
 			if(regar && !activarR) begin
 				activarR <= 1'd1;
 			end
 			if(activarR) begin
 				activarB <= 1'd1;
-				if(temporizador < 64'd50_000_000/(64'd2*(64'd1/(64'd30*tiempoRegado)))) begin
+				if(temporizador < 64'd50_000_000 * 64'd30 * tiempoRegado) begin
 					temporizador <= temporizador + 64'd1;
 				end else begin
 					activarR <= 1'd0;
