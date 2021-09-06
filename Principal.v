@@ -86,6 +86,6 @@ module Principal(clk, rx, MODbomba, MODelectrov, MODluz, lowLevel, highLevel, ac
 
 	//	Los displays imprimen los datos recibidos del módulo WiFi ESP8266
 	divfreq divf(clk, clk1kHz);
-	displays disp(clk1kHz, humedad, melodia, maceta, tipoPlanta, hora, minutos, luxes, Sseg, anodos);
+	displays disp(clk1kHz, humedad, melodia1, maceta, tipoPlanta, hora, minutos, luxes, Sseg, anodos);
 	
 endmodule
