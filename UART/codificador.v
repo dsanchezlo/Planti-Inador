@@ -20,9 +20,10 @@ module codificador(clkBaud, clk1Hz, MODluz, MODbomba, MODelectrov, highLevel, lo
 	
 	reg finPaquete;
 
-	reg clkcount; 									// Para enviar el paquete de datos cada 2 seg
+	reg [5:0] clkcount; 									// Para enviar el paquete de datos cada 20 seg
 
 	reg aux;
+
 
 	initial begin
 		datotx = 8'd0;
@@ -36,8 +37,13 @@ module codificador(clkBaud, clk1Hz, MODluz, MODbomba, MODelectrov, highLevel, lo
 	end
 
 	always @(posedge clk1Hz) begin
-		enviarPaquete <= (clkcount) ? 4'b1 : 4'b0;
-		clkcount <= (clkcount) ? 1'b0 : 1'b1;
+		if (clkcount == 5'd20) begin
+			enviarPaquete <= 1'b1;
+			clkcount <= 5'b0;
+		end else begin
+			clkcount <= clkcount + 5'b1;
+			enviarPaquete <= 1'b0;
+		end
 	end
 
 	always @(posedge clkBaud) begin
